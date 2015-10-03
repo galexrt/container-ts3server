@@ -13,7 +13,9 @@ if [ ! -f "/data/.ts3-downloaded" ]; then
     rm -rf "/data/$TSFILE"
     touch "/data/.ts3-downloaded"
     echo "$TS_VERSION" > /data/.ts3-downloaded
-    echo -e "TS3 Server Version $TS_VERSION download complete\n\n"
+    echo "TS3 Server Version $TS_VERSION download complete"
+    echo ""
+    echo ""
 fi
 
 TSARGS="$@"
