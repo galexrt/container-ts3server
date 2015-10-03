@@ -7,8 +7,9 @@ fi
 TSFILE="teamspeak3-server_linux-amd64-$TS_VERSION.tar.gz"
 
 if [ ! -f "/data/.ts3-installed" ]; then
-    wget -q "http://dl.4players.de/ts/releases/$TS_VERSION/$TSFILE" -C /data
+    wget -q "http://dl.4players.de/ts/releases/$TS_VERSION/$TSFILE" -P /data
     tar xf "/data/$TSFILE" --strip-components=1 -C /data
+    rm -rf "/data/$TSFILE"
     touch "/data/.ts3-installed"
 fi
 
