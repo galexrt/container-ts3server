@@ -6,13 +6,14 @@ fi
 
 TSFILE="teamspeak3-server_linux-amd64-$TS_VERSION.tar.gz"
 
-if [ ! -f "/data/.ts3-installed" ]; then
-    echo "Downloading TS3 Server Version $TS_VERSION ..."
+if [ ! -f "/data/.ts3-downloaded" ]; then
+    echo "TS3 Server downloading Version $TS_VERSION ..."
     wget -nv "http://dl.4players.de/ts/releases/$TS_VERSION/$TSFILE" -P /data
     tar xf "/data/$TSFILE" --strip-components=1 -C /data
     rm -rf "/data/$TSFILE"
-    touch "/data/.ts3-installed"
-    echo "Downloaded complete\n"
+    touch "/data/.ts3-downloaded"
+    echo "$TS_VERSION" > /data/.ts3-downloaded
+    echo -e "TS3 Server Version $TS_VERSION download complete\n\n"
 fi
 
 TSARGS="$@"
@@ -22,5 +23,6 @@ else
     TSARGS="$TSARGS createinifile=1"
 fi
 
+echo "Starting TS3 Server Version $(cat /data/.ts3-downloaded) ...\n\n"
 cd /data
 exec ./ts3server_linux_amd64 "$TSARGS"

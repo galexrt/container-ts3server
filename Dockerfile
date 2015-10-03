@@ -9,7 +9,7 @@ RUN chmod 755 /entrypoint.sh && \
     DEBIAN_FRONTEND=noninteractive apt-get -qq install -y spidermonkey-bin libnspr4 wget ca-certificates && \
     wget -q -O /usr/bin/jsawk https://github.com/micha/jsawk/raw/master/jsawk && \
     chmod 755 /usr/bin/jsawk && \
-    mkdir /data && \
+    mkdir -p /data && \
     apt-get -qq autoremove -y --purge && \
     apt-get -qq clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
