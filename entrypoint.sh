@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ -z "$TS_VERSION" ]; then
-    TS_VERSION=`wget -q -O - https://www.server-residenz.com/tools/ts3versions.json | jsawk -n 'out(this.latest)'`
+    TS_VERSION="$(wget -q -O - https://www.server-residenz.com/tools/ts3versions.json | jsawk -n 'out(this.latest)')"
 fi
 
 TSFILE="teamspeak3-server_linux-amd64-$TS_VERSION.tar.gz"
