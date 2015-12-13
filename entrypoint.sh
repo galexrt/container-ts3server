@@ -31,4 +31,4 @@ echo "Starting TS Server Version $TS_VERSION ..."
 echo ""
 
 cd /data || exit 1
-exec sudo -u ts3server "./ts3server_linux_amd64 $TSARGS"
+exec sudo -u ts3server ./ts3server_linux_amd64 "$TSARGS"
