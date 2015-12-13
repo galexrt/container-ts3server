@@ -4,7 +4,7 @@ if [ -z "$TS_VERSION" ]; then
     TS_VERSION="$(wget -q -O - https://www.server-residenz.com/tools/ts3versions.json | jsawk -n 'out(this.latest)')"
 fi
 
-TSFILE="teamspeak3-server_linux-amd64-$TS_VERSION.tar.gz"
+TSFILE="teamspeak3-server_$ARCHITECTURE-$TS_VERSION.tar.gz"
 
 if [ ! -f "/data/.downloaded" ] || [ "$(cat /data/.downloaded)" != "$TS_VERSION" ]; then
     echo "TS3 Server downloading Version $TS_VERSION ..."
@@ -28,4 +28,4 @@ echo "Starting TS Server Version $TS_VERSION ..."
 echo "==="
 
 cd /data || exit 1
-./ts3server_linux_amd64 "$TSARGS"
+./ts3server_minimal_runscript.sh "$TSARGS"

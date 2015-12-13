@@ -1,7 +1,7 @@
 FROM debian:wheezy
 MAINTAINER Alexander Trost <galexrt@googlemail.com>
 
-ENV LD_LIBRARY_PATH="/data"
+ENV LD_LIBRARY_PATH="/data" ARCHITECTURE="linux-amd64"
 
 ADD entrypoint.sh /entrypoint.sh
 RUN chmod 755 /entrypoint.sh && \
