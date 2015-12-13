@@ -18,8 +18,8 @@ if [ ! -f "/data/.downloaded" ] || [ "$(cat /data/.downloaded)" != "$TS_VERSION"
 fi
 
 TSARGS="$@"
-if [ -e "/data/tsserver.ini" ]; then
-    TSARGS="$TSARGS inifile=/data/tsserver.ini"
+if [ -e "/data/ts3server.ini" ]; then
+    TSARGS="$TSARGS inifile=/data/ts3server.ini"
 else
     TSARGS="$TSARGS createinifile=1"
 fi
