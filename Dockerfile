@@ -4,7 +4,9 @@ MAINTAINER Alexander Trost <galexrt@googlemail.com>
 ENV LD_LIBRARY_PATH="/data"
 
 ADD entrypoint.sh /entrypoint.sh
-RUN chmod 755 /entrypoint.sh && \
+RUN groupadd -g 3000 "ts3server" && \
+    useradd -u 3000 -g "ts3server" -d "/data" "ts3server" && \
+    chmod 755 /entrypoint.sh && \
     apt-get -qq update && \
     DEBIAN_FRONTEND=noninteractive apt-get -qq install -y spidermonkey-bin libnspr4 wget ca-certificates && \
     wget -q -O /usr/bin/jsawk https://github.com/micha/jsawk/raw/master/jsawk && \
