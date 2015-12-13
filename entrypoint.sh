@@ -24,11 +24,8 @@ else
     TSARGS="$TSARGS createinifile=1"
 fi
 
-echo "Correcting mount permissions"
-chown 3000:3000 -R /data
-
 echo "Starting TS Server Version $TS_VERSION ..."
-echo ""
+echo "==="
 
 cd /data || exit 1
-exec sudo -u ts3server ./ts3server_linux_amd64 "$TSARGS"
+./ts3server_linux_amd64 "$TSARGS"
