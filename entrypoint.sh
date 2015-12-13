@@ -17,7 +17,7 @@ if [ ! -f "/data/.downloaded" ] || [ "$(cat /data/.downloaded)" != "$TS_VERSION"
     echo ""
 fi
 
-TSARGS="$@"
+TSARGS="$*"
 if [ -e "/data/ts3server.ini" ]; then
     TSARGS="$TSARGS inifile=/data/ts3server.ini"
 else
@@ -31,4 +31,4 @@ echo "Starting TS Server Version $TS_VERSION ..."
 echo ""
 
 cd /data || exit 1
-exec su -c "./ts3server_linux_amd64 $TSARGS" ts3server
+exec sudo -u ts3server "./ts3server_linux_amd64 $TSARGS"
