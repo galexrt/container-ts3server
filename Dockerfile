@@ -1,12 +1,12 @@
 FROM debian:wheezy
 MAINTAINER Alexander Trost <galexrt@googlemail.com>
 
-ENV LD_LIBRARY_PATH="/data" ARCHITECTURE="linux-amd64"
+ENV LD_LIBRARY_PATH="/data" ARCHITECTURE="linux_amd64"
 
 ADD entrypoint.sh /entrypoint.sh
 
 RUN apt-get -qq update && \
-    DEBIAN_FRONTEND=noninteractive apt-get -q install -y spidermonkey-bin libnspr4 wget ca-certificates && \
+    DEBIAN_FRONTEND=noninteractive apt-get -q install -y spidermonkey-bin libnspr4 wget ca-certificates bzip2 && \
     wget -q -O /usr/bin/jsawk https://github.com/micha/jsawk/raw/master/jsawk && \
     chmod 755 /usr/bin/jsawk && \
     mkdir -p /data && \

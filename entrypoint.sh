@@ -4,13 +4,14 @@ if [ -z "$TS_VERSION" ]; then
     TS_VERSION="$(wget -q -O - https://www.server-residenz.com/tools/ts3versions.json | jsawk -n 'out(this.latest)')"
 fi
 
-TSFILE="teamspeak3-server_$ARCHITECTURE-$TS_VERSION.tar.gz"
+TSFILE="teamspeak3-server_$ARCHITECTURE-$TS_VERSION.tar.bz2"
 
 if [ ! -f "/data/.downloaded" ] || [ "$(cat /data/.downloaded)" != "$TS_VERSION" ]; then
     echo "TS3 Server downloading Version $TS_VERSION ..."
-    wget -nv "http://dl.4players.de/ts/releases/$TS_VERSION/$TSFILE" -O "/data/teamspeak-server.tar.gz"
-    tar xf "/data/teamspeak-server.tar.gz" --strip-components=1 -C /data
-    rm -rf "/data/teamspeak-server.tar.gz"
+    wget -nv "http://dl.4players.de/ts/releases/$TS_VERSION/$TSFILE" -O "/data/teamspeak-server.tar.bz2"
+    bzip2 -d "/data/teamspeak-server.tar.bz2"
+    tar xf "/data/teamspeak-server.tar" --strip-components=1 -C /data
+    rm -rf "/data/teamspeak-server.tar"
     touch "/data/.downloaded"
     echo "$TS_VERSION" > "/data/.downloaded"
     echo "TS Server Version $TS_VERSION download complete"
