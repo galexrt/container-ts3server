@@ -29,4 +29,5 @@ echo "Starting TS Server Version $TS_VERSION ..."
 echo "==="
 
 cd /data || exit 1
+echo "+ Running './ts3server_minimal_runscript.sh $TSARGS'"
 exec ./ts3server_minimal_runscript.sh "$TSARGS"
