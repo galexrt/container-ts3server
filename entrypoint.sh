@@ -1,5 +1,9 @@
 #!/bin/bash
 
+if [ ! -z "$TS3_VERSION" ]; then
+    TS_VERSION="$TS3_VERSION"
+fi
+
 if [ -z "$TS_VERSION" ]; then
     TS_VERSION="$(wget -q -O - https://www.server-residenz.com/tools/ts3versions.json | jsawk -n 'out(this.latest)')"
 fi
