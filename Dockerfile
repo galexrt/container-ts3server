@@ -4,7 +4,7 @@ MAINTAINER Alexander Trost <galexrt@googlemail.com>
 ENV LD_LIBRARY_PATH="/data" ARCHITECTURE="linux_amd64"
 
 RUN apt-get -qq update && \
-    DEBIAN_FRONTEND=noninteractive apt-get -q install -y mozjs24 libnspr4 wget ca-certificates bzip2 && \
+    DEBIAN_FRONTEND=noninteractive apt-get -q install -y libmozjs-24-bin libnspr4 wget ca-certificates bzip2 && \
     wget -q -O /usr/bin/jsawk https://github.com/micha/jsawk/raw/master/jsawk && \
     chmod 755 /usr/bin/jsawk && \
     mkdir -p /data
