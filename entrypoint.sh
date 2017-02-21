@@ -4,9 +4,7 @@ if [ "$DEBUG" == "True" ] || [ "$DEBUG" == "true" ]; then
     set -xe
 fi
 
-if [ ! -z "$TS3_VERSION" ]; then
-    TS_VERSION="$TS3_VERSION"
-fi
+TS_VERSION="${TS3_VERSION:-}"
 
 if [ -z "$TS_VERSION" ]; then
     TS_VERSION="$(wget -q -O - https://www.server-residenz.com/tools/ts3versions.json | jq -r '.latest')"
