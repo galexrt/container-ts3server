@@ -9,7 +9,7 @@ if [ ! -z "$TS3_VERSION" ]; then
 fi
 
 if [ -z "$TS_VERSION" ]; then
-    TS_VERSION="$(wget -q -O - https://www.server-residenz.com/tools/ts3versions.json | jsawk -n 'out(this.latest)')"
+    TS_VERSION="$(wget -q -O - https://www.server-residenz.com/tools/ts3versions.json | jq -r '.latest')"
 fi
 
 TSFILE="teamspeak3-server_$ARCH-$TS_VERSION.tar.bz2"
