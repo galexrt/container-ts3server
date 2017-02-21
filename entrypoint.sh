@@ -12,7 +12,7 @@ if [ -z "$TS_VERSION" ]; then
     TS_VERSION="$(wget -q -O - https://www.server-residenz.com/tools/ts3versions.json | jsawk -n 'out(this.latest)')"
 fi
 
-TSFILE="teamspeak3-server_$ARCHITECTURE-$TS_VERSION.tar.bz2"
+TSFILE="teamspeak3-server_$ARCH-$TS_VERSION.tar.bz2"
 
 if [ ! -f "/data/.downloaded" ] || [ "$(cat /data/.downloaded)" != "$TS_VERSION" ]; then
     echo "->TS3 Server downloading Version $TS_VERSION ..."
