@@ -9,6 +9,12 @@ TS_VERSION="${TS3_VERSION:-}"
 TSDNS_ENABLE="${TSDNS_ENABLE:-False}"
 TSDNS_PORT="${TSDNS_PORT:-41144}"
 
+startTSDNS() {
+    cd /data/tsdns
+    echo "Starting TSDNS server .."
+    exec ./tsdns/tsdnsserver "$TSDNS_PORT"
+}
+
 if [ "$USE_INSTALLED_TS" = "True" ] || [ "$USE_INSTALLED_TS" = "true" ]; then
     if [ -z "$TS_VERSION" ]; then
         TS_VERSION="$(wget -q -O - https://www.server-residenz.com/tools/ts3versions.json | jq -r '.latest')"
@@ -39,11 +45,11 @@ fi
 cd /data || { echo "Can't access the data directory"; exit 1; }
 
 if [ -f "/data/tsdns/tsdns_settings.ini" ] || ([ "$TSDNS_ENABLE" = "True" ] || [ "$TSDNS_ENABLE" = "true" ]); then
-    {
-        cd ./tsdns;
-        echo "Starting TSDNS server ..";
-        ./tsdns/tsdnsserver "$TSDNS_PORT";
-    } &
+    if [ "$ONLY_TSDNS" = "True" ] || [ "$ONLY_TSDNS" = "true" ]; then
+        startTSDNS
+    else
+        startTSDNS &
+    fi
 fi
 
 echo "=> Starting TS Server Version $TS_VERSION ..."
