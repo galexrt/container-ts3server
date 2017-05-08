@@ -8,13 +8,16 @@ RUN apt-get -qq update && \
     wget -q -O /usr/bin/jq "https://github.com/stedolan/jq/releases/download/jq-1.5/jq-$JQ_ARCH" && \
     chmod +x /usr/bin/jq && \
     mkdir -p /data && \
+    ts_version="$(wget -q -O - https://www.server-residenz.com/tools/ts3versions.json | jq -r '.latest')" && \
+    wget -nv "http://dl.4players.de/ts/releases/$ts_version/teamspeak3-server_$ARCH-$ts_version.tar.bz2" -O "/data/teamspeak-server.tar.bz2" && \
+    bzip2 -d "/data/teamspeak-server.tar.bz2" && \
     apt-get -qq autoremove -y --purge && \
     apt-get -qq clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-ADD entrypoint.sh /entrypoint.sh
+COPY entrypoint.sh /entrypoint.sh
 
 VOLUME ["/data"]
-EXPOSE 9987/udp 10011 30033
+EXPOSE 9987/udp 10011/tcp 30033/tcp 41144/tcp
 
 ENTRYPOINT ["/entrypoint.sh"]
