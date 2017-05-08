@@ -19,6 +19,7 @@ startTSDNS() {
 cd /data || { echo "Can't access the data directory"; exit 1; }
 
 if [ "$DOWNLOAD_TS" = "True" ] || [ "$DOWNLOAD_TS" = "true" ]; then
+    rm -rf "/data/teamspeak-server.tar"
     if [ -z "$TS_VERSION" ]; then
         TS_VERSION="$(wget -q -O - https://www.server-residenz.com/tools/ts3versions.json | jq -r '.latest')"
     fi
