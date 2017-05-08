@@ -13,7 +13,7 @@ TSDNS_PORT="${TSDNS_PORT:-41144}"
 startTSDNS() {
     cd /data/tsdns
     echo "Starting TSDNS server .."
-    exec ./tsdns/tsdnsserver "$TSDNS_PORT"
+    exec /data/tsdns/tsdnsserver "$TSDNS_PORT"
 }
 
 cd /data || { echo "Can't access the data directory"; exit 1; }
