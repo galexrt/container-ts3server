@@ -7,6 +7,7 @@ fi
 USE_INSTALLED_TS="${USE_INSTALLED_TS:-False}"
 TS_VERSION="${TS3_VERSION:-}"
 TSDNS_ENABLE="${TSDNS_ENABLE:-False}"
+ONLY_TSDNS="${ONLY_TSDNS:-False}"
 TSDNS_PORT="${TSDNS_PORT:-41144}"
 
 startTSDNS() {
@@ -14,6 +15,8 @@ startTSDNS() {
     echo "Starting TSDNS server .."
     exec ./tsdns/tsdnsserver "$TSDNS_PORT"
 }
+
+cd /data || { echo "Can't access the data directory"; exit 1; }
 
 if [ "$USE_INSTALLED_TS" = "True" ] || [ "$USE_INSTALLED_TS" = "true" ]; then
     if [ -z "$TS_VERSION" ]; then
@@ -33,7 +36,7 @@ if [ "$USE_INSTALLED_TS" = "True" ] || [ "$USE_INSTALLED_TS" = "true" ]; then
     fi
 fi
 
-[ -x "/data/ts3server_minimal_runscript.sh" ] || { echo "Couldn't find ts3server_minimal_runscript.sh. Exiting.."; exit 1;}
+[ ! -x "/data/ts3server_minimal_runscript.sh" ] && (bzip2 -d "/data/teamspeak-server.tar.bz2" || { echo "Couldn't find ts3server_minimal_runscript.sh. Exiting.."; exit 1;})
 
 TSARGS="$*"
 if [ -e "/data/ts3server.ini" ]; then
@@ -41,8 +44,6 @@ if [ -e "/data/ts3server.ini" ]; then
 else
     TSARGS="$TSARGS createinifile=1"
 fi
-
-cd /data || { echo "Can't access the data directory"; exit 1; }
 
 if [ -f "/data/tsdns/tsdns_settings.ini" ] || ([ "$TSDNS_ENABLE" = "True" ] || [ "$TSDNS_ENABLE" = "true" ]); then
     if [ "$ONLY_TSDNS" = "True" ] || [ "$ONLY_TSDNS" = "true" ]; then

@@ -15,9 +15,9 @@ RUN apt-get -qq update && \
     apt-get -qq clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-COPY entrypoint.sh /entrypoint.sh
-
 VOLUME ["/data"]
 EXPOSE 9987/udp 10011/tcp 30033/tcp 41144/tcp
+
+COPY entrypoint.sh /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
