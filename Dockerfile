@@ -10,6 +10,7 @@ RUN apt-get -qq update && \
     mkdir -p /data && \
     ts_version="$(wget -q -O - https://www.server-residenz.com/tools/ts3versions.json | jq -r '.latest')" && \
     wget -nv "http://dl.4players.de/ts/releases/$ts_version/teamspeak3-server_$ARCH-$ts_version.tar.bz2" -O "/data/teamspeak-server.tar.bz2" && \
+    cd /data || exit 1 && \
     bzip2 -d "/data/teamspeak-server.tar.bz2" && \
     apt-get -qq autoremove -y --purge && \
     apt-get -qq clean && \

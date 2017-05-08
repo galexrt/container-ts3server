@@ -4,7 +4,7 @@ if [ "$DEBUG" == "True" ] || [ "$DEBUG" == "true" ]; then
     set -xe
 fi
 
-USE_INSTALLED_TS="${USE_INSTALLED_TS:-False}"
+DOWNLOAD_TS="${DOWNLOAD_TS:-True}"
 TS_VERSION="${TS3_VERSION:-}"
 TSDNS_ENABLE="${TSDNS_ENABLE:-False}"
 ONLY_TSDNS="${ONLY_TSDNS:-False}"
@@ -18,7 +18,7 @@ startTSDNS() {
 
 cd /data || { echo "Can't access the data directory"; exit 1; }
 
-if [ "$USE_INSTALLED_TS" = "True" ] || [ "$USE_INSTALLED_TS" = "true" ]; then
+if [ "$DOWNLOAD_TS" = "True" ] || [ "$DOWNLOAD_TS" = "true" ]; then
     if [ -z "$TS_VERSION" ]; then
         TS_VERSION="$(wget -q -O - https://www.server-residenz.com/tools/ts3versions.json | jq -r '.latest')"
     fi
@@ -36,7 +36,7 @@ if [ "$USE_INSTALLED_TS" = "True" ] || [ "$USE_INSTALLED_TS" = "true" ]; then
     fi
 fi
 
-[ ! -x "/data/ts3server_minimal_runscript.sh" ] && (bzip2 -d "/data/teamspeak-server.tar.bz2" || { echo "Couldn't find ts3server_minimal_runscript.sh. Exiting.."; exit 1;})
+[ ! -x "/data/ts3server_minimal_runscript.sh" ] && { echo "Couldn't find ts3server_minimal_runscript.sh. Exiting.."; exit 1;}
 
 TSARGS="$*"
 if [ -e "/data/ts3server.ini" ]; then
