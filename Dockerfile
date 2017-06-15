@@ -2,9 +2,12 @@ FROM debian:jessie
 MAINTAINER Alexander Trost <galexrt@googlemail.com>
 
 ENV TS3_DIR="/data" TS3_USER="3000" TS3_GROUP="3000" \
+    TSDNS_ENABLE="False" \
     LD_LIBRARY_PATH="/data" ARCH="linux_amd64" JQ_ARCH="linux64"
 
-RUN apt-get -qq update && \
+RUN groupadd -g "$TS3_GROUP" teamspeak && \
+    useradd -u "$TS3_USER" -g "$TS3_GROUP" -d "$TS3_DIR" teamspeak && \
+    apt-get -qq update && \
     DEBIAN_FRONTEND=noninteractive apt-get -q install -y wget ca-certificates bzip2 sudo && \
     wget -q -O /usr/bin/jq "https://github.com/stedolan/jq/releases/download/jq-1.5/jq-$JQ_ARCH" && \
     chmod +x /usr/bin/jq && \
