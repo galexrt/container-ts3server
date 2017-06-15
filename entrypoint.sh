@@ -20,7 +20,7 @@ fi
 
 startTSDNS() {
     cd /data/tsdns
-    echo "Starting TSDNS server .."
+    echo "=> Starting TSDNS server .."
     exec /data/tsdns/tsdnsserver "$TSDNS_PORT"
 }
 
@@ -54,7 +54,7 @@ else
     TSARGS="$TSARGS createinifile=1"
 fi
 
-if [ -f "/data/tsdns/tsdns_settings.ini" ] || ([ "$TSDNS_ENABLE" = "True" ] || [ "$TSDNS_ENABLE" = "true" ]); then
+if [ "$TSDNS_ENABLE" = "True" ] || [ "$TSDNS_ENABLE" = "true" ]; then
     if [ "$ONLY_TSDNS" = "True" ] || [ "$ONLY_TSDNS" = "true" ]; then
         startTSDNS
     else
