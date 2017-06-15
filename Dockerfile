@@ -5,7 +5,7 @@ ENV TS3_DIR="/data" TS3_USER="3000" TS3_GROUP="3000" \
     LD_LIBRARY_PATH="/data" ARCH="linux_amd64" JQ_ARCH="linux64"
 
 RUN apt-get -qq update && \
-    DEBIAN_FRONTEND=noninteractive apt-get -q install -y wget ca-certificates bzip2 && \
+    DEBIAN_FRONTEND=noninteractive apt-get -q install -y wget ca-certificates bzip2 sudo && \
     wget -q -O /usr/bin/jq "https://github.com/stedolan/jq/releases/download/jq-1.5/jq-$JQ_ARCH" && \
     chmod +x /usr/bin/jq && \
     mkdir -p "$TS3_DIR" && \
