@@ -45,7 +45,20 @@ if [ "$DOWNLOAD_TS" = "True" ] || [ "$DOWNLOAD_TS" = "true" ]; then
     fi
 fi
 
-[ ! -x "/data/ts3server_minimal_runscript.sh" ] && { echo "Couldn't find ts3server_minimal_runscript.sh. Exiting.."; exit 1;}
+[ ! -x "/data/ts3server_minimal_runscript.sh" ] && { echo "Couldn't find ts3server_minimal_runscript.sh. Exiting.."; exit 1; }
+
+if [ ! -z "$TS3_WHITELIST" ]; then
+    echo "" > /data/query_ip_whitelist.txt
+    for entry in $(echo "$TS3_WHITELIST" | tr ',' ' '); do
+        echo "$entry" >> /data/query_ip_whitelist.txt
+    done
+fi
+if [ ! -z "$TS3_BLACKLIST" ]; then
+    echo "" > /data/query_ip_blacklist.txt
+    for entry in $(echo "$TS3_BLACKLIST" | tr ',' ' '); do
+        echo "$entry" >> /data/query_ip_blacklist.txt.txt
+    done
+fi
 
 TSARGS="$*"
 if [ -e "/data/ts3server.ini" ]; then
