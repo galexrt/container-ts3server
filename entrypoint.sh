@@ -10,14 +10,6 @@ TSDNS_ENABLE="${TSDNS_ENABLE:-False}"
 ONLY_TSDNS="${ONLY_TSDNS:-False}"
 TSDNS_PORT="${TSDNS_PORT:-41144}"
 
-echo "-> Updating teamspeak user and group id if necessary ..."
-if [ "$TS3_USER" != "3000" ]; then
-    usermod -u "$TS3_USER" teamspeak
-fi
-if [ "$TS3_GROUP" != "3000" ]; then
-    groupmod -g "$TS3_GROUP" teamspeak
-fi
-
 startTSDNS() {
     cd /data/tsdns
     echo "=> Starting TSDNS server .."
@@ -76,4 +68,4 @@ if [ "$TSDNS_ENABLE" = "True" ] || [ "$TSDNS_ENABLE" = "true" ]; then
 fi
 
 echo "=> Starting TS Server Version $TS_VERSION ..."
-exec sudo -u teamspeak -g teamspeak ./ts3server_minimal_runscript.sh "$TSARGS"
+exec ./ts3server_minimal_runscript.sh "$TSARGS"

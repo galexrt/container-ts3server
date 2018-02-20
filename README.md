@@ -36,6 +36,9 @@ Add the following env variable to the docker run command:
 TS_VERSION=3.1.0.1
 ```
 
+### Data Volume
+Data directory needs to be owned by UID and GID `3000`.
+
 ### SELinux
 Add the `z` option behind the volume mount:
 ```
