@@ -1,5 +1,5 @@
 FROM debian:stretch
-MAINTAINER Alexander Trost <galexrt@googlemail.com>
+LABEL maintainer="Alexander Trost <galexrt@googlemail.com>"
 
 ENV TS3_DIR="/data" TS3_USER="3000" TS3_GROUP="3000" TS3SERVER_LICENSE="accept" \
     TSDNS_ENABLE="False" \
