@@ -9,7 +9,7 @@ RUN groupadd -g "$TS3_GROUP" teamspeak && \
     useradd -u "$TS3_USER" -g "$TS3_GROUP" -d "$TS3_DIR" teamspeak && \
     apt-get -qq update && \
     DEBIAN_FRONTEND=noninteractive apt-get -q install -y wget ca-certificates bzip2 sudo && \
-    wget -q -O /usr/bin/jq "https://github.com/stedolan/jq/releases/download/jq-1.5/jq-$JQ_ARCH" && \
+    wget -q -O /usr/bin/jq "https://github.com/stedolan/jq/releases/download/jq-1.6/jq-$JQ_ARCH" && \
     chmod +x /usr/bin/jq && \
     mkdir -p "$TS3_DIR" && \
     ts_version="$(wget -q -O - https://www.server-residenz.com/tools/ts3versions.json | jq -r '.latest')" && \
