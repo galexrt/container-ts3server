@@ -24,11 +24,9 @@ if [ "$DOWNLOAD_TS" = "True" ] || [ "$DOWNLOAD_TS" = "true" ]; then
         TS_VERSION="$(wget -q -O - https://www.server-residenz.com/tools/ts3versions.json | jq -r '.latest')"
     fi
 
-    TSFILE="teamspeak3-server_$ARCH-$TS_VERSION.tar.bz2"
-
     if [ ! -f "/data/.downloaded" ] || [ "$(cat /data/.downloaded)" != "$TS_VERSION" ]; then
         echo "->TS3 Server downloading Version $TS_VERSION ..."
-        wget -nv "http://dl.4players.de/ts/releases/$TS_VERSION/$TSFILE" -O "/data/teamspeak-server.tar.bz2"
+        wget -nv "https://files.teamspeak-services.com/releases/server/$TS_VERSION/teamspeak3-server_linux_amd64-$TS_VERSION.tar.bz2" -O "/data/teamspeak-server.tar.bz2"
         bzip2 -d "/data/teamspeak-server.tar.bz2"
         tar xf "/data/teamspeak-server.tar" --strip-components=1 -C /data
         rm -rf "/data/teamspeak-server.tar"
