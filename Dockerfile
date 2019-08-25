@@ -12,9 +12,9 @@ RUN groupadd -g "$TS3_GROUP" teamspeak && \
     wget -q -O /usr/bin/jq "https://github.com/stedolan/jq/releases/download/jq-1.6/jq-$JQ_ARCH" && \
     chmod +x /usr/bin/jq && \
     mkdir -p "$TS3_DIR" && \
-    ts_version="$(wget -q -O - https://www.server-residenz.com/tools/ts3versions.json | jq -r '.latest')" && \
-    wget -nv "http://dl.4players.de/ts/releases/$ts_version/teamspeak3-server_$ARCH-$ts_version.tar.bz2" -O "$TS3_DIR/teamspeak-server.tar.bz2" && \
-    echo "$ts_version" > /data/.downloaded && \
+    TS_VERSION="$(wget -q -O - https://www.server-residenz.com/tools/ts3versions.json | jq -r '.latest')" && \
+    wget -nv "https://files.teamspeak-services.com/releases/server/$TS_VERSION/teamspeak3-server_linux_amd64-$TS_VERSION.tar.bz2" -O "/data/teamspeak-server.tar.bz2" && \
+    echo "$TS_VERSION" > /data/.downloaded && \
     cd "$TS3_DIR" && \
     bzip2 -d "$TS3_DIR/teamspeak-server.tar.bz2" && \
     chown teamspeak:teamspeak -R "$TS3_DIR" && \
