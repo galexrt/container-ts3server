@@ -1,19 +1,20 @@
-FROM debian:stretch
+FROM debian:buster
 LABEL maintainer="Alexander Trost <galexrt@googlemail.com>"
 
-ENV TS3_DIR="/data" TS3_USER="3000" TS3_GROUP="3000" TS3SERVER_LICENSE="accept" \
-    TSDNS_ENABLE="False" \
-    LD_LIBRARY_PATH="/data" ARCH="linux_amd64" JQ_ARCH="linux64"
+ARG TS_VERSION="3.12.1"
+ARG TS3_USER="3000"
+ARG TS3_GROUP="3000"
+ARG ARCH="linux_amd64"
 
+ENV TS3_DIR="/data" TS3SERVER_LICENSE="accept" \
+    TSDNS_ENABLE="False" LD_LIBRARY_PATH="/data"
 RUN groupadd -g "$TS3_GROUP" teamspeak && \
     useradd -u "$TS3_USER" -g "$TS3_GROUP" -d "$TS3_DIR" teamspeak && \
     apt-get -qq update && \
+    apt-get -q upgrade -y && \
     DEBIAN_FRONTEND=noninteractive apt-get -q install -y wget ca-certificates bzip2 sudo && \
-    wget -q -O /usr/bin/jq "https://github.com/stedolan/jq/releases/download/jq-1.6/jq-$JQ_ARCH" && \
-    chmod +x /usr/bin/jq && \
     mkdir -p "$TS3_DIR" && \
-    TS_VERSION="$(wget -q -O - https://www.server-residenz.com/tools/ts3versions.json | jq -r '.latest')" && \
-    wget -nv "https://files.teamspeak-services.com/releases/server/$TS_VERSION/teamspeak3-server_linux_amd64-$TS_VERSION.tar.bz2" -O "/data/teamspeak-server.tar.bz2" && \
+    wget -nv "https://files.teamspeak-services.com/releases/server/$TS_VERSION/teamspeak3-server_$ARCH-$TS_VERSION.tar.bz2" -O "/data/teamspeak-server.tar.bz2" && \
     echo "$TS_VERSION" > /data/.downloaded && \
     cd "$TS3_DIR" && \
     bzip2 -d "$TS3_DIR/teamspeak-server.tar.bz2" && \
