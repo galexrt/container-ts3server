@@ -6,8 +6,9 @@ ARG TS3_USER="3000"
 ARG TS3_GROUP="3000"
 ARG ARCH="linux_amd64"
 
-ENV TS3_DIR="/data" TS3SERVER_LICENSE="accept" \
-    TSDNS_ENABLE="False" LD_LIBRARY_PATH="/data"
+ENV TS3_DIR="/data" TS3SERVER_LICENSE="accept" TSDNS_ENABLE="False" LD_LIBRARY_PATH="/data" \
+    TS_VERSION="$TS_VERSION" TS3_USER="$TS3_USER" TS3_GROUP="$TS3_GROUP" ARCH="$ARCH"
+
 RUN groupadd -g "$TS3_GROUP" teamspeak && \
     useradd -u "$TS3_USER" -g "$TS3_GROUP" -d "$TS3_DIR" teamspeak && \
     apt-get -qq update && \
