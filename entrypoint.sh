@@ -5,7 +5,7 @@ if [ "$DEBUG" == "True" ] || [ "$DEBUG" == "true" ]; then
 fi
 
 DOWNLOAD_TS="${DOWNLOAD_TS:-True}"
-TS_VERSION="${TS3_VERSION:-}"
+TS_VERSION="${TS_VERSION:-}"
 ARCH="${ARCH:-linux_amd64}"
 TSDNS_ENABLE="${TSDNS_ENABLE:-False}"
 ONLY_TSDNS="${ONLY_TSDNS:-False}"
