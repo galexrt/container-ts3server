@@ -1,7 +1,7 @@
 FROM debian:buster
 LABEL maintainer="Alexander Trost <galexrt@googlemail.com>"
 
-ARG TS_VERSION="3.12.1"
+ARG TS_VERSION="3.13.2"
 ARG TS3_USER="3000"
 ARG TS3_GROUP="3000"
 ARG ARCH="linux_amd64"
