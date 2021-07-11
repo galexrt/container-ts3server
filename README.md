@@ -1,13 +1,10 @@
 # docker-ts3server
 
-[![](https://images.microbadger.com/badges/image/galexrt/ts3server.svg)](https://microbadger.com/images/galexrt/ts3server "Get your own image badge on microbadger.com")
-
 [![Docker Repository on Quay](https://quay.io/repository/galexrt/ts3server/status "Docker Repository on Quay")](https://quay.io/repository/galexrt/ts3server)
 
 Image available from:
 
 * [**Quay.io**](https://quay.io/repository/galexrt/ts3server)
-* [**Docker Hub**](https://hub.docker.com/r/galexrt/ts3server)
 
 TS3Server in a Docker Image
 
@@ -19,12 +16,6 @@ From quay.io:
 
 ```shell
 docker pull quay.io/galexrt/ts3server:latest
-```
-
-Or from Docker Hub:
-
-```shell
-docker pull galexrt/ts3server:latest
 ```
 
 ### Running the TS3Server
@@ -42,7 +33,7 @@ docker run \
 Add the following env variable to the docker run command:
 
 ```shell
-TS_VERSION=3.1.0.1
+TS_VERSION=3.13.6
 ```
 
 ### Data Volume

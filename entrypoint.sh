@@ -36,15 +36,15 @@ fi
 
 [ ! -x "$DATA_DIR/ts3server_minimal_runscript.sh" ] && { echo "Couldn't find ts3server_minimal_runscript.sh. Exiting.."; exit 1; }
 
-if [ ! -z "$TS3_WHITELIST" ]; then
+if [ ! -z "$TS3_ALLOWLIST" ]; then
     echo "" > "$DATA_DIR/query_ip_whitelist.txt"
-    for entry in $(echo "$TS3_WHITELIST" | tr ',' ' '); do
+    for entry in $(echo "$TS3_ALLOWLIST" | tr ',' ' '); do
         echo "$entry" >> "$DATA_DIR/query_ip_whitelist.txt"
     done
 fi
-if [ ! -z "$TS3_BLACKLIST" ]; then
+if [ ! -z "$TS3_DENYLIST" ]; then
     echo "" > "$DATA_DIR/query_ip_blacklist.txt"
-    for entry in $(echo "$TS3_BLACKLIST" | tr ',' ' '); do
+    for entry in $(echo "$TS3_DENYLIST" | tr ',' ' '); do
         echo "$entry" >> "$DATA_DIR/query_ip_blacklist.txt.txt"
     done
 fi
