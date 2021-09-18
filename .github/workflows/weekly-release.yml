@@ -1,7 +1,7 @@
 name: weekly-release
 on:
   schedule:
-    - cron:  '30 12 * * 4'
+    - cron: '30 12 * * 4'
 jobs:
   test:
     runs-on: ubuntu-latest
