@@ -32,7 +32,7 @@ RUN groupadd -g "${TS3_GROUP}" teamspeak && \
     useradd -u "${TS3_USER}" -g "${TS3_GROUP}" -d "${DATA_DIR}" teamspeak && \
     apt-get -qq update && \
     apt-get -q upgrade -y && \
-    DEBIAN_FRONTEND=noninteractive apt-get -q install -y wget ca-certificates bzip2 sudo && \
+    DEBIAN_FRONTEND="noninteractive" apt-get -q install -y wget ca-certificates bzip2 sudo && \
     mkdir -p "${DATA_DIR}" && \
     wget -nv "https://files.teamspeak-services.com/releases/server/${TS_VERSION}/teamspeak3-server_${ARCH}-${TS_VERSION}.tar.bz2" -O "${DATA_DIR}/teamspeak-server.tar.bz2" && \
     cd "${DATA_DIR}" && \
