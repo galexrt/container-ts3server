@@ -5,6 +5,7 @@ Container Image with TeamSpeak³ Server.
 Container Image available from:
 
 * [Quay.io](https://quay.io/repository/galexrt/ts3server)
+* [GHCR.io](https://github.com/users/galexrt/packages/container/package/container-ts3server)
 
 Container Image Tags:
 
