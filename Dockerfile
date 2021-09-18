@@ -1,9 +1,9 @@
+FROM debian:buster
+
 ARG TS_VERSION="3.13.6"
 ARG TS3_USER="3000"
 ARG TS3_GROUP="3000"
 ARG ARCH="linux_amd64"
-
-FROM debian:buster
 
 LABEL maintainer="Alexander Trost <galexrt@googlemail.com>"
 
@@ -37,6 +37,10 @@ RUN groupadd -g "$TS3_GROUP" teamspeak && \
     apt-get -qq clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+COPY entrypoint.sh /entrypoint.sh
+
+RUN chmod 755 /entrypoint.sh
+
 USER teamspeak
 
 VOLUME ["$DATA_DIR"]
@@ -44,9 +48,5 @@ VOLUME ["$DATA_DIR"]
 WORKDIR "$DATA_DIR"
 
 EXPOSE 9987/udp 10011/tcp 30033/tcp 41144/tcp
-
-COPY entrypoint.sh /entrypoint.sh
-
-RUN chmod 755 /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
