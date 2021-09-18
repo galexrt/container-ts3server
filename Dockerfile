@@ -1,21 +1,23 @@
 FROM debian:buster
 
+ARG BUILD_DATE="N/A"
+ARG REVISION="N/A"
+
 ARG TS_VERSION="3.13.6"
 ARG TS3_USER="3000"
 ARG TS3_GROUP="3000"
 ARG ARCH="linux_amd64"
 
-LABEL maintainer="Alexander Trost <galexrt@googlemail.com>"
-
-LABEL org.label-schema.schema-version="1.0"
-LABEL org.label-schema.build-date="${BUILD_DATE}"
-LABEL org.label-schema.name="galexrt/container-ts3server"
-LABEL org.label-schema.description="Container Image with TeamSpeak³ Server."
-LABEL org.label-schema.url="https://github.com/galexrt/container-ts3server"
-LABEL org.label-schema.vcs-url="https://github.com/galexrt/container-ts3server"
-LABEL org.label-schema.vcs-ref="${VCS_REF}"
-LABEL org.label-schema.vendor="galexrt"
-LABEL org.label-schema.version="${TS_VERSION}"
+LABEL org.opencontainers.image.authors="Alexander Trost <galexrt@googlemail.com>" \
+    org.opencontainers.image.created="${BUILD_DATE}" \
+    org.opencontainers.image.title="galexrt/container-ts3server" \
+    org.opencontainers.image.description="Container Image with TeamSpeak³ Server." \
+    org.opencontainers.image.documentation="https://github.com/galexrt/container-ts3server/blob/main/README.md" \
+    org.opencontainers.image.url="https://github.com/galexrt/container-ts3server" \
+    org.opencontainers.image.source="https://github.com/galexrt/container-ts3server" \
+    org.opencontainers.image.revision="${REVISION}" \
+    org.opencontainers.image.vendor="galexrt" \
+    org.opencontainers.image.version="${TS_VERSION}"
 
 ENV DATA_DIR="/data" TS3SERVER_LICENSE="accept" TSDNS_ENABLE="False" LD_LIBRARY_PATH="/data" \
     TS_VERSION="$TS_VERSION" TS3_USER="$TS3_USER" TS3_GROUP="$TS3_GROUP" ARCH="$ARCH"
