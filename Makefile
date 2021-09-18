@@ -1,8 +1,8 @@
 SHELL := /usr/bin/env bash -euo pipefail -c
 .EXPORT_ALL_VARIABLES:
 
-TS_VERSION := $(shell grep -P -o 'TS_VERSION="([a-z0-9.-]+)"' Dockerfile | cut -d'"' -f 2)
-RELEASE_TAG := v$(TS_VERSION)-$(shell date +%Y%m%d-%H%M%S-%3N)
+APPLICATION_VERSION := $(shell grep -P -o 'TS_VERSION="([a-z0-9.-]+)"' Dockerfile | cut -d'"' -f 2)
+RELEASE_TAG := v$(APPLICATION_VERSION)-$(shell date +%Y%m%d-%H%M%S-%3N)
 
 # Default is the main branch as that is where the "latest" tag should be
 VERSION ?= main

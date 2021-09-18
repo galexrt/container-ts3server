@@ -1,4 +1,4 @@
-# docker-ts3server
+# container-ts3server
 
 Container Image with TeamSpeak³ Server.
 

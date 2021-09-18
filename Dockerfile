@@ -1,10 +1,21 @@
-FROM debian:buster
-LABEL maintainer="Alexander Trost <galexrt@googlemail.com>"
-
 ARG TS_VERSION="3.13.6"
 ARG TS3_USER="3000"
 ARG TS3_GROUP="3000"
 ARG ARCH="linux_amd64"
+
+FROM debian:buster
+
+LABEL maintainer="Alexander Trost <galexrt@googlemail.com>"
+
+LABEL org.label-schema.schema-version="1.0"
+LABEL org.label-schema.build-date="${BUILD_DATE}"
+LABEL org.label-schema.name="galexrt/container-ts3server"
+LABEL org.label-schema.description="Container Image with TeamSpeak³ Server."
+LABEL org.label-schema.url="https://github.com/galexrt/container-ts3server"
+LABEL org.label-schema.vcs-url="https://github.com/galexrt/container-ts3server"
+LABEL org.label-schema.vcs-ref="${VCS_REF}"
+LABEL org.label-schema.vendor="galexrt"
+LABEL org.label-schema.version="${TS_VERSION}"
 
 ENV DATA_DIR="/data" TS3SERVER_LICENSE="accept" TSDNS_ENABLE="False" LD_LIBRARY_PATH="/data" \
     TS_VERSION="$TS_VERSION" TS3_USER="$TS3_USER" TS3_GROUP="$TS3_GROUP" ARCH="$ARCH"
