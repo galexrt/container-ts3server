@@ -1,12 +1,16 @@
 # docker-ts3server
 
-[![Docker Repository on Quay](https://quay.io/repository/galexrt/ts3server/status "Docker Repository on Quay")](https://quay.io/repository/galexrt/ts3server)
+Container Image with TeamSpeak³ Server.
 
-Image available from:
+Container Image available from:
 
-* [**Quay.io**](https://quay.io/repository/galexrt/ts3server)
+* [Quay.io](https://quay.io/repository/galexrt/ts3server)
 
-TS3Server in a Docker Image
+Container Image Tags:
+
+* `main` - Latest build of the `main` branch.
+* `vx.y.z` - Latest build of the application (updated in-sync with the date container image tags).
+* `vx.y.z-YYYYmmdd-HHMMSS-NNN` - Latest build of the application with date of the build.
 
 ## Usage
 
@@ -15,7 +19,7 @@ TS3Server in a Docker Image
 From quay.io:
 
 ```shell
-docker pull quay.io/galexrt/ts3server:latest
+docker pull quay.io/galexrt/ts3server:main
 ```
 
 ### Running the TS3Server
@@ -25,7 +29,7 @@ docker run \
     -d \
     --name=ts3server \
     -v /opt/docker/ts3server:/data \
-    quay.io/galexrt/ts3server:latest
+    quay.io/galexrt/ts3server:main
 ```
 
 ### Manually specify TS3Server version
@@ -49,5 +53,5 @@ docker run \
     -d \
     --name=ts3server \
     -v /opt/docker/ts3server:/data:z \
-    quay.io/galexrt/ts3server:latest
+    quay.io/galexrt/ts3server:main
 ```
